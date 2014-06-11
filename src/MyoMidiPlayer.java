@@ -24,11 +24,12 @@ public class MyoMidiPlayer {
     private static int[] instruments  = {35,38,39,40,46,51,56,60,61,62,63,67,69,70,73,75};
     Random rnd = new Random();
     private int tick;
+    private int currentInstrument = instruments[0];
     
     MyoMidiPlayer()
     {
     	tick = 0;
-    	//getMidiDeviceInfo();
+    	getMidiDeviceInfo();
     	setupMidi();
         buildTrack();
     }
@@ -39,12 +40,12 @@ public class MyoMidiPlayer {
     	for (int i = 0; i < infos.length; i++) {
     	    try {
     	        device = MidiSystem.getMidiDevice(infos[i]);
+    	        System.out.println(infos[i].getDescription());
     	    } catch (MidiUnavailableException e) {
     	          // Handle or throw exception...
     	    }
     	    if (device instanceof Sequencer) {
     	    	System.out.println(infos[0].getDescription());
-    	    	
     	    }
     	}
     }
@@ -91,7 +92,7 @@ public class MyoMidiPlayer {
     	//int randVel = rnd.nextInt(100);
     	System.out.println(me.type);
     	System.out.println(me.command);
-    	if(me.type.contains("cmd")) {
+    	if(me.type.contains("control")) {
     		if(me.command.contains("allOff")) {
     			System.out.println("All off received");
     			while(track.size() > 0)
@@ -108,10 +109,20 @@ public class MyoMidiPlayer {
     	            }
     	        }
     		}
+    		else if(me.command.contains("channelDown")) {
+    			currentInstrument = instruments[(currentInstrument - 1) % 16];
+    		}
+    		else if(me.command.contains("channelUp")) {
+    			currentInstrument = instruments[(currentInstrument + 1) % 16];
+    		}
+    	}
+    	else if (me.type.contains("diff")){
+    		System.out.println(currentInstrument);
+    		track.add(makeEvent(noteOn, 9, currentInstrument, 100, getTick()));
     	}
     	else {
     		//setNote(3, getTick());
-    		track.add(makeEvent(noteOn, 9, 36, 100, getTick()));
+    		//track.add(makeEvent(noteOn, 9, 36, 100, getTick()));
     		//track.add(makeEvent(noteOff, 9, 36, 100, -1));
     	}
     	
