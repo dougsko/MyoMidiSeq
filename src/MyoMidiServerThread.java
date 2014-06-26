@@ -2,6 +2,7 @@ import java.net.*;
 import java.io.*;
 
 import javax.sound.midi.ControllerEventListener;
+import javax.sound.midi.MidiDevice;
 import javax.sound.midi.ShortMessage;
 
 import com.google.gson.Gson;
@@ -12,7 +13,7 @@ public class MyoMidiServerThread extends Thread {
     private MyoMidiPlayer mplayer;
     private Gson gson;
  
-    public MyoMidiServerThread(Socket socket) {
+    public MyoMidiServerThread(Socket socket, MidiDevice device) {
         super("MyoMidiServerThread");
         this.socket = socket;
         
