@@ -29,26 +29,10 @@ public class MyoMidiPlayer {
     MyoMidiPlayer()
     {
     	tick = 0;
-    	getMidiDeviceInfo();
     	setupMidi();
         buildTrack();
     }
     
-    public void getMidiDeviceInfo(){
-    	MidiDevice device = null;
-    	MidiDevice.Info[] infos = MidiSystem.getMidiDeviceInfo();
-    	for (int i = 0; i < infos.length; i++) {
-    	    try {
-    	        device = MidiSystem.getMidiDevice(infos[i]);
-    	        System.out.println(infos[i].getDescription());
-    	    } catch (MidiUnavailableException e) {
-    	          // Handle or throw exception...
-    	    }
-    	    if (device instanceof Sequencer) {
-    	    	System.out.println(infos[0].getDescription());
-    	    }
-    	}
-    }
     
     public void setupMidi ()
     {
