@@ -60,11 +60,11 @@ public class MyoMidiServer {
     	    }
     	    else if (device instanceof Synthesizer ) {
     	        //rcvrInfos.add(infos[i]);
-    	        System.out.println("Synthesizer: " + infos[i].getDescription());
+    	        System.out.println("Synthesizer: " + infos[i].getDescription() + " max tx: " + device.getMaxTransmitters() + ", max rx: " + device.getMaxReceivers());
     	    }
     	    else if (device instanceof Sequencer ) {
     	        //rcvrInfos.add(infos[i]);
-    	        System.out.println("Sequencer: " + infos[i].getDescription());
+    	        System.out.println("Sequencer: " + infos[i].getDescription() + " max tx: " + device.getMaxTransmitters() + ", max rx: " + device.getMaxReceivers());
     	    }
     	}
     	System.exit(0);
