@@ -52,19 +52,19 @@ public class MyoMidiServer {
     	    }
     	    if (device instanceof Transmitter) {
     	        //rcvrInfos.add(infos[i]);
-    	        System.out.println("Transmitter: " + infos[i].getDescription());
+    	        System.out.println("Transmitter: " + infos[i].getName() + ", " + infos[i].getDescription());
     	    }
     	    else if (device instanceof Receiver) {
     	        //rcvrInfos.add(infos[i]);
-    	        System.out.println("Receiver: " + infos[i].getDescription());
+    	        System.out.println("Receiver: " + infos[i].getName() + ", " + infos[i].getDescription());
     	    }
     	    else if (device instanceof Synthesizer ) {
     	        //rcvrInfos.add(infos[i]);
-    	        System.out.println("Synthesizer: " + infos[i].getDescription() + " max tx: " + device.getMaxTransmitters() + ", max rx: " + device.getMaxReceivers());
+    	        System.out.println("Synthesizer: " + infos[i].getName() + ", " + infos[i].getDescription() + " max tx: " + device.getMaxTransmitters() + ", max rx: " + device.getMaxReceivers());
     	    }
     	    else if (device instanceof Sequencer ) {
     	        //rcvrInfos.add(infos[i]);
-    	        System.out.println("Sequencer: " + infos[i].getDescription() + " max tx: " + device.getMaxTransmitters() + ", max rx: " + device.getMaxReceivers());
+    	        System.out.println("Sequencer: " + infos[i].getName() + ", " + infos[i].getDescription() + " max tx: " + device.getMaxTransmitters() + ", max rx: " + device.getMaxReceivers());
     	    }
     	}
     	System.exit(0);
